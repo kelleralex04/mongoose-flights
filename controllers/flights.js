@@ -20,7 +20,6 @@ function newFlight(req, res) {
     const dt = newFlight.departs;
     let departsDate = `${dt.getFullYear()}-${(dt.getMonth() + 1).toString().padStart(2, '0')}`;
     departsDate += `-${dt.getDate().toString().padStart(2, '0')}T${dt.toTimeString().slice(0, 5)}`;
-    console.log(departsDate)
     res.render('flights/new', {
         title: 'Add Flight',
         departsDate,
@@ -44,5 +43,8 @@ async function create(req, res) {
 
 async function show(req, res) {
     const flight = await Flight.findById(req.params.id);
+    flight.destinations.sort((a,b) => {
+        return new Date(a.arrival) - new Date(b.arrival);
+    });
     res.render('flights/show', { title: 'Flight Details', flight });
 };

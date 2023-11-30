@@ -6,6 +6,7 @@
             <th>Airline</th>
             <th>Departing From:</th>
             <th>Connections and Destination:</th>
+            <th>Arrival Time</th>
             <th>Flight Number:</th>
             <th>Departure Date/Time:</th>
         </tr>
@@ -14,7 +15,25 @@
         <tr>
             <td><%= flight.airline %></td>
             <td><%= flight.airport %></td>
-            <td><%= flight.destinations[0].airport %></td>
+            <% if (flight.destinations.length) { %>
+                <td>
+                    <ul>
+                        <% flight.destinations.forEach(function(f) { %>
+                            <li><%= f.airport %></li>
+                        <% }) %>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <% flight.destinations.forEach(function(f) { %>
+                            <li><%= f.arrival %></li>
+                        <% }) %>
+                    </ul>
+                </td>
+            <% } else { %>
+                <td></td>
+                <td></td>
+            <% } %>
             <td><%= flight.flightNo %></td>
             <td><%= flight.departs %></td>
         </tr>

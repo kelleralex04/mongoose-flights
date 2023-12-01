@@ -55,4 +55,24 @@
     <input type="submit" value="Add Destination">
 </form>
 
+<br><br><button><a href="/flights/<%= flight._id %>/tickets/new">NEW TICKET</a></button>
+
+<br><h2>Tickets</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Seat</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% tickets.forEach(function(t) { %>
+            <tr>
+                <td><%= t.seat %></td>
+                <td><%= t.price %></td>
+            </tr>
+        <% }) %>
+    </tbody>
+</table>
+
 <%- include('../partials/footer') %>

@@ -44,11 +44,10 @@
 <form action="/flights/<%= flight._id %>/destinations" method="POST">
     <label for="airport">Airport</label>
     <select name="airport">
-        <option value="AUS">AUS</option>
-        <option value="DFW">DFW</option>
-        <option value="DEN">DEN</option>
-        <option value="LAX">LAX</option>
-        <option value="SAN">SAN</option>
+        <% unvisited.forEach((u) => { %>
+            <option value=<% u %>><%= u %></option>
+        <% }) %>
+        
     </select>
     <label for="arrival">Arrival Date/Time</label>
     <input type="datetime-local" name="arrival">
@@ -69,7 +68,7 @@
         <% tickets.forEach(function(t) { %>
             <tr>
                 <td><%= t.seat %></td>
-                <td><%= t.price %></td>
+                <td>$<%= t.price %></td>
             </tr>
         <% }) %>
     </tbody>

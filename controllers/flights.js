@@ -52,8 +52,11 @@ async function show(req, res) {
         return new Date(a.arrival) - new Date(b.arrival);
     });
     const tickets = await Ticket.find({flight: flight._id});
-    console.log(tickets);
-    res.render('flights/show', { title: 'Flight Details', flight, tickets });
+    let unvisited = ['AUS', 'DFW', 'DEN', 'LAX', 'SAN']
+    flight.destinations.forEach((d) => {
+        unvisited = unvisited.filter((u) => u !== d.airport && u !== flight.airport)
+    });
+    res.render('flights/show', { title: 'Flight Details', flight, tickets, unvisited });
 };
 
 function newTicket(req, res) {

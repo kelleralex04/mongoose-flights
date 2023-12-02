@@ -7,7 +7,8 @@ module.exports = {
     create,
     show,
     newTicket,
-    createTicket
+    createTicket,
+    deleteTicket
 };
 
 async function index(req, res) {
@@ -78,5 +79,14 @@ async function createTicket(req, res) {
             title: 'Add Ticket',
             errorMsg: err.message
         });
+    };
+};
+
+async function deleteTicket(req, res) {
+    await Ticket.deleteOne({'flight': req.body.flight});
+    try {
+        res.redirect(`/flights/${req.params.id}`,);
+    } catch(err) {
+        console.log(err);
     };
 };

@@ -12,8 +12,10 @@ module.exports = {
 
 async function index(req, res) {
     const flights = await Flight.find({}).sort({departs:1});
+    const curDate = new Date();
     res.render('flights/index', {
         title: 'All Flights',
+        curDate,
         flights
     });
 };

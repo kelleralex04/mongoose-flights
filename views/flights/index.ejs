@@ -15,11 +15,12 @@
                 <td><%= f.airline %></td>
                 <td><%= f.airport %></td>
                 <td><%= f.flightNo %></td>
-                <td><%= f.departs %></td>
+                <td <% if (f.departs < curDate) { %> style="color: red" <% } %>><%= f.departs %></td>
                 <td><button><a href="flights/<%= f._id %>">DETAILS</a></button></td>
             </tr>
         <% }) %>
     </tbody>
 </table>
+
 
 <%- include('../partials/footer') %>

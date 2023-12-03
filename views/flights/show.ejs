@@ -43,7 +43,7 @@
 <br><br><h2>Add Destination</h2>
 <form action="/flights/<%= flight._id %>/destinations" method="POST">
     <label for="airport">Airport</label>
-    <select name="airport">
+    <select name="airport" required="true">
         <% unvisited.forEach((u) => { %>
             <option value="<%= u %>"><%= u %></option>
         <% }) %>

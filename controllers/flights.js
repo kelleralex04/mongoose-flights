@@ -57,7 +57,10 @@ async function show(req, res) {
     flight.destinations.forEach((d) => {
         unvisited = unvisited.filter((u) => u !== d.airport && u !== flight.airport)
     });
-    res.render('flights/show', { title: 'Flight Details', flight, tickets, unvisited });
+    const dt = flight.departs;
+    let departsDate = `${dt.getFullYear()}-${(dt.getMonth() + 1).toString().padStart(2, '0')}`;
+    departsDate += `-${dt.getDate().toString().padStart(2, '0')}T${dt.toTimeString().slice(0, 5)}`;
+    res.render('flights/show', { title: 'Flight Details', flight, tickets, unvisited, departsDate });
 };
 
 function newTicket(req, res) {

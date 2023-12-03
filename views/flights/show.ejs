@@ -45,12 +45,12 @@
     <label for="airport">Airport</label>
     <select name="airport">
         <% unvisited.forEach((u) => { %>
-            <option value=<% u %>><%= u %></option>
+            <option value="<%= u %>"><%= u %></option>
         <% }) %>
         
     </select>
     <label for="arrival">Arrival Date/Time</label>
-    <input type="datetime-local" name="arrival">
+    <input type="datetime-local" name="arrival" value="<%- departsDate %>">
     <input type="submit" value="Add Destination">
 </form>
 
